@@ -1,4 +1,13 @@
-# CosmosNodeMonitor
+# Cosmos Node Monitor
+
+## Project List
+
+| Chain   | Network Type     | Chain ID       | Node Monitor URL                                                                       |
+| ------- | ---------------- | -------------- | -------------------------------------------------------------------------------------- |
+| UnUniFi | Testnet          | ununifi-6-test | [https://ununifi-node-monitor-test.web.app](https://ununifi-node-monitor-test.web.app) |
+| UnUniFi | Mainnet(not yet) | -              | [https://ununifi-node-monitor.web.app](https://ununifi-node-monitor.web.app)           |
+
+## For Developer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 

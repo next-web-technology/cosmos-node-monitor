@@ -20,6 +20,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build:ununifi --if-present
       - run: npm test  -- --watch=false --browsers=ChromeHeadless
       - run: npx firebase deploy --project=ununifi --token=${{ secrets.FIREBASE_TOKEN }} --only hosting
