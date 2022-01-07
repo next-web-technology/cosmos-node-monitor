@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ununifi-node-monitor'`, () => {
+  it(`should have as title 'cosmos-node-monitor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ununifi-node-monitor');
+    expect(app.title).toEqual('cosmos-node-monitor');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ununifi-node-monitor app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('cosmos-node-monitor app is running!');
   });
 });
