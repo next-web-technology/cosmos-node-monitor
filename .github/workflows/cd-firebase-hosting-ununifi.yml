@@ -1,4 +1,4 @@
-name: CD Firebase Hosting
+name: CD Firebase Hosting UnUniFi
 
 on:
   release:
