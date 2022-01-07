@@ -1,5 +1,5 @@
 {
-  "name": "ununifi-node-monitor",
+  "name": "cosmos-node-monitor",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
