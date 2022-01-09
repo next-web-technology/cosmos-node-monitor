@@ -1,0 +1,27 @@
+name: CD Firebase Functions UnUniFi Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+        working-directory: ./functions
+      - run: npm run build
+        working-directory: ./functions
+      - run: npx firebase deploy --project=ununifi-test --token=${{ secrets.FIREBASE_TOKEN }} --only functions
+        working-directory: ./functions
