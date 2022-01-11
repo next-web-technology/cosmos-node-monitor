@@ -18,7 +18,7 @@ import {
 
 initializeApp();
 
-export const triggerJobsExecutedPeriodicallyEveryMinute = functions
+export const triggerJobsExecutedPeriodically = functions
   .runWith({
     timeoutSeconds: 60,
     memory: "128MB",
@@ -54,7 +54,7 @@ export const triggerJobsExecutedPeriodicallyEveryMinute = functions
     }
   });
 
-export const onCreateJob = functions
+export const executeJobOnCreateJob = functions
   .runWith({
     timeoutSeconds: 60,
     memory: "128MB",
@@ -63,7 +63,7 @@ export const onCreateJob = functions
   .firestore.document("jobs/{domain}")
   .onCreate(async (change, context) => {
     const domain: string = context.params.domain;
-    functions.logger.debug(domain);
+    functions.logger.info(domain);
     const chainId: string = functions.config().cosmos.chain_id;
     const restApiHttp = convertDomainToRestApiUrl(domain, "http");
     const restApiHttps = convertDomainToRestApiUrl(domain, "https");
