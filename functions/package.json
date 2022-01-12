@@ -32,8 +32,5 @@
     "prettier": "^2.5.1",
     "typescript": "^3.8.0"
   },
-  "private": true,
-  "overrides": {
-    "colors@1": "1.4.0"
-  }
+  "private": true
 }
