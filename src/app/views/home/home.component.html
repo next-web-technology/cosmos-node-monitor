@@ -1,1 +1,84 @@
-<p>view-home works!</p>
+<div class="flex-1">
+  <span class="text-lg font-bold">REST API Node List</span>
+</div>
+<div class="overflow-x-auto">
+  <table class="table w-full table-zebra">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Chain ID</th>
+        <th>Http</th>
+        <th>Sync</th>
+        <th>Block</th>
+        <th>Node</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngIf="nodes && nodes.length > 0; then existNodes; else noNodes"
+      ></ng-container>
+      <ng-template #existNodes>
+        <tr *ngFor="let node of nodes">
+          <th>{{ node.domain }}</th>
+          <th>{{ node.chainId }}</th>
+          <th>
+            <span *ngIf="node.restApiHttpEnabled" class="bg-green-500"
+              >Enabled</span
+            >
+            <span *ngIf="!node.restApiHttpEnabled" class="bg-red-500"
+              >Disabled</span
+            >
+          </th>
+          <th>
+            <a
+              *ngIf="node.syncStatus"
+              href="{{
+                node.restApiHttp
+              }}/cosmos/base/tendermint/v1beta1/syncing"
+              class="link link-primary bg-green-500"
+              >Status</a
+            >
+            <a
+              *ngIf="!node.syncStatus"
+              href="{{
+                node.restApiHttp
+              }}/cosmos/base/tendermint/v1beta1/syncing"
+              class="link link-primary bg-red-500"
+              >Status</a
+            >
+          </th>
+          <th>
+            <a
+              href="{{
+                node.restApiHttp
+              }}/cosmos/base/tendermint/v1beta1/blocks/{{
+                node.latestBlockHeight
+              }}"
+              class="link link-primary mx-2"
+              >{{ node.latestBlockHeight }}</a
+            >
+            <a
+              href="{{
+                node.restApiHttp
+              }}/cosmos/base/tendermint/v1beta1/blocks/latest"
+              class="link link-primary"
+              >Latest</a
+            >
+          </th>
+          <th>
+            <a
+              href="{{
+                node.restApiHttp
+              }}/cosmos/base/tendermint/v1beta1/node_info"
+              class="link link-primary"
+              >Info</a
+            >
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #noNodes>
+        <span>Any node doesn't exist!</span>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
