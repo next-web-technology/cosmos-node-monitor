@@ -1,0 +1,69 @@
+<div class="flex-1">
+  <span class="text-lg font-bold">Validator Node List</span>
+</div>
+<div class="overflow-x-auto">
+  <table class="table w-full table-zebra">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Commission</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Bonding</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Moniker</th>
+        <th>Rate</th>
+        <th>Max Rate</th>
+        <th>Max Change Rate</th>
+        <th>Update Time</th>
+        <th>Status</th>
+        <th>Height</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngIf="
+          validators && validators.length > 0;
+          then existValidators;
+          else notExistValidators
+        "
+      ></ng-container>
+      <ng-template #existValidators>
+        <tr *ngFor="let validator of validators">
+          <td>{{ validator.moniker }}</td>
+          <td>{{ validator.commissionRate | percent }}</td>
+          <td>{{ validator.commissionMaxRate | percent }}</td>
+          <td>{{ validator.commissionMaxChangeRate | percent }}</td>
+          <td>
+            {{ validator.commissionUpdateTime | date: "yyyy-M-d a h:mm:ss z" }}
+          </td>
+          <td>
+            <ng-container
+              *ngIf="
+                validator.status === 'BOND_STATUS_UNBONDING';
+                then validatorStatusNg;
+                else validatorStatusOK
+              "
+            ></ng-container>
+            <ng-template #validatorStatusNg>
+              <span class="bg-red-500">{{ validator.status }}</span>
+            </ng-template>
+            <ng-template #validatorStatusOK>
+              <span class="bg-green-500">{{ validator.status }}</span>
+            </ng-template>
+          </td>
+          <td>{{ validator.unbondingHeight }}</td>
+          <td>{{ validator.unbondingTime | date: "yyyy-M-d a h:mm:ss z" }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #notExistValidators>
+        <span>Any node doesn't exist!</span>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

@@ -12,21 +12,10 @@
       </div>
       <div class="flex-none hidden lg:block">
         <ul class="menu horizontal">
-          <li *ngFor="let chain of chains">
-            <ng-container
-              *ngIf="
-                chain.chainId &&
-                chain.nodeMonitorLink &&
-                chain.blockExplorerLink
-              "
+          <li *ngFor="let menu of menus">
+            <a routerLink="{{ menu.path }}" class="rounded-btn"
+              ><fa-icon [icon]="menu.icon"></fa-icon>{{ menu.name }}</a
             >
-              <a class="rounded-btn" href="{{ chain.nodeMonitorLink }}">
-                <div class="avator rounded-full w-5 h-5">
-                  <img src="../assets/project-logos/ununifi.png" />
-                </div>
-                {{ chain.name }} ({{ chain.networkType }})</a
-              >
-            </ng-container>
           </li>
         </ul>
       </div>
@@ -38,13 +27,13 @@
       <div *ngIf="matchChain">
         <span class="footer-title">Chain Info</span>
         <a href="{{ matchChain.officialWebsiteLink }}"
-          ><fa-icon [icon]="websiteIcon"></fa-icon>Chain</a
+          ><fa-icon [icon]="matchChain.officialWebsiteIcon"></fa-icon>Chain</a
         >
         <a href="{{ matchChain.twitterLink }}"
-          ><fa-icon [icon]="twitterIcon"></fa-icon>Twitter</a
+          ><fa-icon [icon]="matchChain.twitterIcon"></fa-icon>Twitter</a
         >
         <a href="{{ matchChain.githubLink }}"
-          ><fa-icon [icon]="githubIcon"></fa-icon>GitHub</a
+          ><fa-icon [icon]="matchChain.githubIcon"></fa-icon>GitHub</a
         >
       </div>
       <div>
@@ -58,19 +47,10 @@
   <div class="drawer-side">
     <label for="app-drawer" class="drawer-overlay"></label>
     <ul class="p-4 overflow-y-auto menu w-80 bg-base-100">
-      <li *ngFor="let chain of chains">
-        <ng-container
-          *ngIf="
-            chain.chainId && chain.nodeMonitorLink && chain.blockExplorerLink
-          "
+      <li *ngFor="let menu of menus">
+        <a routerLink="{{ menu.path }}"
+          ><fa-icon [icon]="menu.icon"></fa-icon>{{ menu.name }}</a
         >
-          <a href="{{ chain.nodeMonitorLink }}">
-            <div class="avator rounded-full w-5 h-5">
-              <img src="../assets/project-logos/ununifi.png" />
-            </div>
-            {{ chain.name }} ({{ chain.networkType }})</a
-          >
-        </ng-container>
       </li>
     </ul>
   </div>
