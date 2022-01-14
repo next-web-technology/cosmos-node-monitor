@@ -2,6 +2,7 @@ import {
   InlineResponse20035,
   InlineResponse20037,
   InlineResponse20038,
+  InlineResponse20066Validators,
 } from "@cosmos-client/core/esm/openapi";
 import { Job } from "../firestore/jobs/job.model";
 import {
@@ -10,6 +11,7 @@ import {
   NodeLatestBlock,
   NodeSyncStatus,
 } from "../firestore/nodes/node.model";
+import { Validator } from "../firestore/validators/validator.model";
 
 export const convertNodeToInitialJob = (node: Node): Job => {
   const job: Job = {
@@ -101,4 +103,65 @@ export const convertCosmosNodeSyncStatusToNodeSyncStatus = (
   return {
     syncStatus,
   };
+};
+
+export const convertCosmosStakingValidatorsToValidators = (
+  cosmosStakingValidators: InlineResponse20066Validators[] | undefined
+): Validator[] => {
+  if (cosmosStakingValidators === undefined) {
+    return [];
+  }
+  const validators: Validator[] = cosmosStakingValidators.map(
+    (cosmosStakingValidator) => {
+      /* eslint-disable camelcase */
+      const moniker = cosmosStakingValidator.description?.moniker
+        ? cosmosStakingValidator.description?.moniker
+        : "";
+      const identity = cosmosStakingValidator.description?.identity
+        ? cosmosStakingValidator.description?.identity
+        : "";
+      const website = cosmosStakingValidator.description?.website
+        ? cosmosStakingValidator.description?.website
+        : "";
+      const status = cosmosStakingValidator.status
+        ? cosmosStakingValidator.status
+        : "";
+      const unbondingHeight = cosmosStakingValidator.unbonding_height
+        ? cosmosStakingValidator.unbonding_height
+        : "";
+      const unbondingTime = cosmosStakingValidator.unbonding_time
+        ? cosmosStakingValidator.unbonding_time
+        : "";
+      const commissionRate =
+        cosmosStakingValidator.commission?.commission_rates?.rate?.toString()
+          ? cosmosStakingValidator.commission?.commission_rates?.rate?.toString()
+          : "";
+      const commissionMaxRate =
+        cosmosStakingValidator.commission?.commission_rates?.max_rate?.toString()
+          ? cosmosStakingValidator.commission?.commission_rates?.max_rate?.toString()
+          : "";
+      const commissionMaxChangeRate =
+        cosmosStakingValidator.commission?.commission_rates?.max_change_rate?.toString()
+          ? cosmosStakingValidator.commission?.commission_rates?.max_change_rate?.toString()
+          : "";
+      const commissionUpdateTime = cosmosStakingValidator.commission
+        ?.update_time
+        ? cosmosStakingValidator.commission?.update_time
+        : "";
+      /* eslint-enable camelcase */
+      return {
+        moniker,
+        identity,
+        website,
+        status,
+        unbondingHeight,
+        unbondingTime,
+        commissionRate,
+        commissionMaxRate,
+        commissionMaxChangeRate,
+        commissionUpdateTime,
+      };
+    }
+  );
+  return validators;
 };

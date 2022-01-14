@@ -4,6 +4,7 @@ import {
   InlineResponse20035,
   InlineResponse20037,
   InlineResponse20038,
+  InlineResponse20066Validators,
 } from "@cosmos-client/core/esm/openapi";
 import { convertDomainToRestApiUrl } from "../utils/converter";
 
@@ -72,6 +73,29 @@ export const getCosmosNodeSyncStatus = async (
     return nodeSyncStatus;
   } catch (error) {
     functions.logger.debug(error);
+    return undefined;
+  }
+};
+
+export const getCosmosStakingValidators = async (
+  domain: string,
+  protocol: string,
+  chainId: string
+): Promise<InlineResponse20066Validators[] | undefined> => {
+  const restApiUrl = convertDomainToRestApiUrl(domain, protocol);
+  const sdk = new cosmosclient.CosmosSDK(restApiUrl, chainId);
+  try {
+    const result = await rest.staking.validators(sdk);
+    functions.logger.debug(result);
+    if (result.status !== 200) {
+      functions.logger.error("Invalid status code!");
+      return undefined;
+    }
+    const validators = result.data.validators;
+    functions.logger.debug(validators);
+    return validators;
+  } catch (error) {
+    functions.logger.error(error);
     return undefined;
   }
 };
