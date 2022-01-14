@@ -5,8 +5,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/rest-api-nodes/rest-api-nodes.module').then(
-        (m) => m.RestApiNodesModule
+      import('./pages/validator-nodes/validator-nodes.module').then(
+        (m) => m.ValidatorNodesModule
       ),
   },
   {
@@ -14,6 +14,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/rest-api-nodes/rest-api-nodes.module').then(
         (m) => m.RestApiNodesModule
+      ),
+  },
+  {
+    path: 'validator-nodes',
+    loadChildren: () =>
+      import('./pages/validator-nodes/validator-nodes.module').then(
+        (m) => m.ValidatorNodesModule
       ),
   },
 ];

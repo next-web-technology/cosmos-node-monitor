@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { AppComponent } from './app.component';
-import { CHAINS } from './models/chains/chain';
+import { MENUS } from './models/menus/menu';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -36,17 +36,9 @@ describe('AppComponent', () => {
   });
 
   it('should render navigation links on sidenav drawer and navbar horizontal menu', async () => {
-    CHAINS.filter(
-      (chain) =>
-        chain.chainId && chain.blockExplorerLink && chain.nodeMonitorLink
-    ).forEach((chain) => {
-      const links = screen.getAllByText(`${chain.name} (${chain.networkType})`);
-      expect(links.length).toBe(2);
-      links.forEach((link) => {
-        expect(link.getAttribute('href')).toBe(
-          chain.nodeMonitorLink ? chain.nodeMonitorLink : ''
-        );
-      });
+    MENUS.forEach((menu) => {
+      const menuElements = screen.getAllByText(menu.name);
+      expect(menuElements.length).toBe(2);
     });
   });
 });

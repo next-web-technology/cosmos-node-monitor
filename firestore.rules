@@ -8,5 +8,9 @@ service cloud.firestore {
       allow get, list: if true;
       allow create, update, delete: if false;
     }
+    match /validators/{domain} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
   }
 }
