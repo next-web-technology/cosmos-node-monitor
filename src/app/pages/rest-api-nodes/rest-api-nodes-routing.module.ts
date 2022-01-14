@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { RestApiNodesComponent } from './rest-api-nodes.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: RestApiNodesComponent,
   },
 ];
 

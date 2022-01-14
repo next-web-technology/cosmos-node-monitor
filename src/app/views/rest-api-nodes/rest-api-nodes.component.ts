@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Node } from 'src/app/models/nodes/node.model';
 
 @Component({
-  selector: 'app-view-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-view-rest-api-nodes',
+  templateUrl: './rest-api-nodes.component.html',
+  styleUrls: ['./rest-api-nodes.component.css'],
 })
-export class ViewHomeComponent {
+export class ViewRestApiNodesComponent {
   @Input() nodes?: Node[] | null;
 
   constructor() {}

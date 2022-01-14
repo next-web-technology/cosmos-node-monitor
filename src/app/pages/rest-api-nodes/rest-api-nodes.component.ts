@@ -4,11 +4,11 @@ import { Node } from 'src/app/models/nodes/node.model';
 import { NodeService } from 'src/app/models/nodes/node.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-rest-api-nodes',
+  templateUrl: './rest-api-nodes.component.html',
+  styleUrls: ['./rest-api-nodes.component.css'],
 })
-export class HomeComponent {
+export class RestApiNodesComponent {
   nodes$: Observable<Node[]>;
   nodesSubscription?: Subscription;
 
