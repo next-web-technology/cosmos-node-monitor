@@ -5,7 +5,16 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomeModule),
+      import('./pages/rest-api-nodes/rest-api-nodes.module').then(
+        (m) => m.RestApiNodesModule
+      ),
+  },
+  {
+    path: 'rest-api-nodes',
+    loadChildren: () =>
+      import('./pages/rest-api-nodes/rest-api-nodes.module').then(
+        (m) => m.RestApiNodesModule
+      ),
   },
 ];
 

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/angular';
 import { NODES_MOCK } from 'src/app/models/nodes/node.mock';
-import { ViewHomeComponent } from './home.component';
+import { ViewRestApiNodesComponent } from './rest-api-nodes.component';
 
-describe('ViewHomeComponent', () => {
+describe('ViewRestApiNodesComponent', () => {
   beforeEach(async () => {
-    await render(ViewHomeComponent, {
+    await render(ViewRestApiNodesComponent, {
       componentProperties: { nodes: NODES_MOCK },
     });
   });

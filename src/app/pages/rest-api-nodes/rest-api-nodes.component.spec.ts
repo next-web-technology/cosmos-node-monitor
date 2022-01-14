@@ -3,11 +3,11 @@ import { Observable, of } from 'rxjs';
 import { Node } from 'src/app/models/nodes/node.model';
 import { NODES_MOCK } from 'src/app/models/nodes/node.mock';
 import { NodeService } from 'src/app/models/nodes/node.service';
-import { HomeComponent } from './home.component';
+import { RestApiNodesComponent } from './rest-api-nodes.component';
 
-describe('HomeComponent', () => {
+describe('RestApiNodesComponent', () => {
   beforeEach(async () => {
-    await render(HomeComponent, {
+    await render(RestApiNodesComponent, {
       providers: [
         {
           provide: NodeService,
