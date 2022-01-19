@@ -45,7 +45,8 @@
           <td>
             <ng-container
               *ngIf="
-                validator.status === 'BOND_STATUS_UNBONDING';
+                validator.status === 'BOND_STATUS_UNBONDING' ||
+                  validator.status === 'BOND_STATUS_UNBONDED';
                 then validatorStatusNg;
                 else validatorStatusOK
               "
